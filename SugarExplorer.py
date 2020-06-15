@@ -21,9 +21,11 @@
 
 import os
 import sys
-import gtk
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk,Gdk,
 
-from sugar.activity import activity
+from sugar3.activity import activity
 
 from Toolbars import ToolbarSalir
 from Toolbars import Toolbar
@@ -49,13 +51,13 @@ class Ventana(activity.Activity):
 
         self.set_title("JAMediaExplorer")
         self.set_icon_from_file(os.path.join(ICONOS, "JAMediaExplorer.svg"))
-        self.modify_bg(0, gtk.gdk.Color(65000, 65000, 65000))
+        self.modify_bg(0, Gdk.Color(65000, 65000, 65000))
         self.set_resizable(True)
         self.set_size_request(640, 480)
-        self.set_position(gtk.WIN_POS_CENTER)
+        self.set_position(Gtk.WIN_POS_CENTER)
         self.set_border_width(3)
 
-        vbox = gtk.VBox()
+        vbox = Gtk.VBox()
 
         self.toolbar = Toolbar()
         self.toolbar_accion = ToolbarAccion()
@@ -185,4 +187,4 @@ class Ventana(activity.Activity):
         for indice in range(paginas):
             pags[indice].get_child().new_handle(False)
         sys.exit(0)
-        gtk.main_quit()
+        Gtk.main_quit()
